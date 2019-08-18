@@ -10,4 +10,4 @@ def cadastro():
     with open('usuarios.txt', 'r') as arquivo:
         conteudo = arquivo.readlines()
 
-    return conteudo
+    return '{}'.format(conteudo)
