@@ -6,8 +6,8 @@ def index():
     return render_template('index.html', nome='cassiano')
 
 @app.route("/usuarios")
-def cadastro():
+def usuarios():
     with open('usuarios.txt', 'r') as arquivo:
         conteudo = arquivo.readlines()
 
-    return '{}'.format(conteudo)
+    return render_template('usuarios.html', usuarios=conteudo)
