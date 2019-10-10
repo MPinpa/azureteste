@@ -11,3 +11,7 @@ def usuarios():
         conteudo = arquivo.readlines()
 
     return render_template('usuarios.html', usuarios=conteudo)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)
