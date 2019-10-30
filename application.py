@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import boto3
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -12,9 +13,13 @@ def usuarios():
 
     ec2 = boto3.resource('ec2')
 
-    listadeinstancia = ec2.instances.all()
+    instancias = ec2.instances.all()
 
-    return render_template('usuarios.html', usuarios=listadeinstancia)
+    listadeinstancia = [tag['Value'] for instancia in instancias for tag in instancia.tags if tag['Key'] == "Name"]
+
+    pprint(listadeinstancia)
+
+    return render_template('usuarios.html', listadeinstancia=listadeinstancia)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=80, debug=True)
