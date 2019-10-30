@@ -11,7 +11,7 @@ def index():
 @app.route("/usuarios")
 def usuarios():
 
-    ec2 = boto3.resource('ec2', region='sa-east-1')
+    ec2 = boto3.resource('ec2', region_name='sa-east-1')
 
     instancias = ec2.instances.all()
 
