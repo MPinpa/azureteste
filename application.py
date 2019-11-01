@@ -11,15 +11,14 @@ def index():
 @app.route("/usuarios")
 def usuarios():
 
-    ec2 = boto3.resource('ec2', region_name='sa-east-1')
+    s3 = boto3.resource('s3')
 
-    instancias = ec2.instances.all()
+    buckets = s3.buckets.all()
 
-    listadeinstancia = [tag['Value'] for instancia in instancias for tag in instancia.tags if tag['Key'] == "Name"]
+    print(buckets)
 
-    pprint(listadeinstancia)
 
-    return render_template('usuarios.html', listadeinstancia=listadeinstancia)
+    return render_template('usuarios.html', listadeinstancia=buckets)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
